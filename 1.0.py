@@ -12,12 +12,12 @@ def step(initial, final):
         primordial = j[0]
         going = j[1]
         check = j[2]
-        if primordial not in ruin:
+        if primordial not in next_step:
             if going % (2**n) == 0:
                 going = going // (2**n)
                 check = check / (2**n)
                 if primordial < check:
-                    ruin.append(primordial)
+                    next_step.append(primordial)
             elif going % 2 == 1:
                 going = 3*going+1
                 check = 3*check+1
@@ -28,7 +28,7 @@ def step(initial, final):
             elif going % 2 == 0:
                 going = going//2
                 check = check/2
-                if primordial <= check:
+                if primordial < check:
                     y = [primordial, going, check]
                     final.append(y)
                     going = going+((10**n)/2)
@@ -38,7 +38,7 @@ def step(initial, final):
                     final.append(y)
 
 
-ruin = []
+next_step = []
 n = 1
 zero = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
@@ -49,15 +49,15 @@ for i in range(1, 100):
     step(initial, final)
     initial = final
     final = []
-print(len(ruin), ruin)
+print(len(next_step), next_step)
 
 zero = []
 for i in numbers:
-    for j in ruin:
+    for j in next_step:
         y = j + i*(10**n)
         zero.append(y)
 n = 2
-ruin = []
+next_step = []
 initial = []
 preparation(zero, initial)
 final = []
@@ -65,15 +65,15 @@ for i in range(1, 100):
     step(initial, final)
     initial = final
     final = []
-print(len(ruin), ruin)
+print(len(next_step), next_step)
 
 zero = []
 for i in numbers:
-    for j in ruin:
+    for j in next_step:
         y = j + i*(10**n)
         zero.append(y)
 n = 3
-ruin = []
+next_step = []
 initial = []
 preparation(zero, initial)
 final = []
@@ -81,15 +81,15 @@ for i in range(1, 100):
     step(initial, final)
     initial = final
     final = []
-print(len(ruin), ruin)
+print(len(next_step), next_step)
 
 zero = []
 for i in numbers:
-    for j in ruin:
+    for j in next_step:
         y = j + i*(10**n)
         zero.append(y)
 n = 4
-ruin = []
+next_step = []
 initial = []
 preparation(zero, initial)
 final = []
@@ -97,15 +97,15 @@ for i in range(1, 100):
     step(initial, final)
     initial = final
     final = []
-print(len(ruin), ruin)
+print(len(next_step), next_step)
 
 zero = []
 for i in numbers:
-    for j in ruin:
+    for j in next_step:
         y = j + i*(10**n)
         zero.append(y)
 n = 5
-ruin = []
+next_step = []
 initial = []
 preparation(zero, initial)
 final = []
@@ -113,4 +113,4 @@ for i in range(1, 100):
     step(initial, final)
     initial = final
     final = []
-print(len(ruin), sorted(ruin))
+print(len(next_step), sorted(next_step))
