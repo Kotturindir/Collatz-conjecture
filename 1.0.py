@@ -1,3 +1,4 @@
+#packing of basic elements of further calculations.
 def preparation(x_1, x_2):
     for i in x_1:
         y_1 = i
@@ -9,25 +10,30 @@ def preparation(x_1, x_2):
 
 def step(initial, final):
     for j in initial:
+        #constant basic element.
         primordial = j[0]
+        #element that change with rule of Collatz conjecture.
         going = j[1]
-        check = j[2]
+        #element whose changing depends on "going".
+        #element being compared with "primordial".
+        checking = j[2]
+        #if element in "next_step" check is not needed.
         if primordial not in next_step:
             if going % (2**n) == 0:
                 going = going // (2**n)
-                check = check / (2**n)
-                if primordial < check:
+                checking = checking / (2**n)
+                if primordial < checking:
                     next_step.append(primordial)
             elif going % 2 == 1:
                 going = 3*going+1
-                check = 3*check+1
+                check = 3*checking+1
                 while going > 10**n:
                     going = going - 10**n
                 y = [primordial, going, check]
                 final.append(y)
             elif going % 2 == 0:
                 going = going//2
-                check = check/2
+                check = checking/2
                 if primordial < check:
                     y = [primordial, going, check]
                     final.append(y)
@@ -40,7 +46,7 @@ def step(initial, final):
 
 next_step = []
 n = 1
-zero = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+zero = [1]
 numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 initial = []
 preparation(zero, initial)
@@ -52,6 +58,7 @@ for i in range(1, 100):
 print(len(next_step), next_step)
 
 zero = []
+#increasing of massive in 10 times
 for i in numbers:
     for j in next_step:
         y = j + i*(10**n)
